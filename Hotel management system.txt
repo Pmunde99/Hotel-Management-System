@@ -1,0 +1,166 @@
+create table Customer_Registration(C_ID int primary key,First_Name char(30) NOT NULL,
+                                   Last_Name char(30) NOT NULL,Phone_No int NOT NULL,
+                                   Email varchar(30) Unique key,Country char(20) NOT NULL);
+
+create table Department(D_ID int primary key,D_Name char(20),No_Staff int);
+
+create table department_staff(S_ID int Primary Key,First_name char(20),Last_Name char(20),
+                                              Phone_No int,Hire_Date Date,Email varchar(20),
+                                               D_ID int, foreign key(D_ID) references department(D_ID));
+
+create table room(Room_No int primary key,Max_Guest int,Bed_Size char(20),Extra_Facilites char(30),Price int NOT NULL,Availibility char(20));
+
+create table Food_Menu(F_ID int Primary Key,Menu char(30),Price int,F_ID int,foreign key(F_ID) references food_type(F_ID));
+
+
+create table reservation(R_ID int PRIMARY KEY,No_Guests int,Check_In Date,Check_Out Date,
+                                    Total_Day int,C_ID int,foreign key(C_ID) references Customer_Registration(C_ID),
+                                    Room_No int,foreign key(Room_No) references room(Room_No),
+                                    Reservation_Status char(20));
+
+
+create table transaction(Transaction_Id int Primary Key,Today_Date Date,Total_Amount int,
+                                    Transaction_Type char(20) NOT NULL,Room_No int,C_ID int, 
+                                    foreign key(Room_No) references room(Room_No),
+                                     foreign key(C_ID) references Customer_Registration(C_ID));
+
+
+create table Amenity(Amenity_ID int primary key,Name char(20),Description char(20),
+                                 Room_No int,Foreign key(Room_No) references Room(Room_no));
+
+
+
+create table feedback(Feedback_Id int primary key,C_ID int,R_ID int,Rating int,
+                                 Comments varchar(30),foreign key(C_ID) references customer_registration(C_ID),
+                                 foreign key(R_ID) references reservation(R_ID));
+
+
+
+
+
+insert into Department values(101,"Front-Office",3);
+insert into Department values(102,"House Keeping",4);
+insert into Department values(103,"Food and Beverage",4);
+insert into Department values(104,"Security and Maintenance",3);
+insert into Department values(105,"Sales and Marketing",2);
+insert into Department values(106,"Finance",3);
+insert into Department values(107,"Human and Resources",2);
+
+
+ insert into department_staff values(4,"Akash","Karad",990080623,"2019-06-19",24000,"Akash99@gmail.com",102);
+ insert into department_staff values(5,"Akira","Pate",959860623,"2015-12-23",29000,"Akira29@gmail.com",102);
+ insert into department_staff values(6,"Raju","Kurade",910860623,"2018-02-15",35000,"Rajuk9@gmail.com",102);
+insert into department_staff values(7,"Nilam","Singh",984000326,"2019-05-16",31000,"Nilam59@gmail.com",102);
+insert intodepartment_staff values(8,"Kashvi","Agarwal",985620623,"2022-05-10",39000,"Kashi@gmail.com",103);
+insert intodepartment_staff values (9,"Veera","Ahuja",956234813,"2022-12-30",36000,"V67@gmail.com",103);
+insert intodepartment_staff values(10,"Ishita","Yadav",9326541023,"2023-02-26",32000,"Isha9@gmail.com",103);
+insert intodepartment_staff values(11,"Vinod" ,"Sarkar",895623154,"2023-06-12",35000,"Vin58@gmail.com",103);
+insert into department_staff values(12,"Kashi","Mohate",854620623,"2023-06-25",40000,"Kashi459@gmail.com",104);
+insert intodepartment_staff values(13,"Sanjay","Mirdha",589647813,"2023-09-14",29000,"San8@gmail.com",104);
+insert intodepartment_staff values(14,"Manoj", "Bankar",569841023,"2023-07-13",30000,"Manoj@gmail.com",104);
+ insert into department_staff values(15,"Sri", "Bagdi",984050613,"2015-10-04",49000,"Shri19@gmail.com",105);
+insert intodepartment_staff values(16,"Dinesh", "Gayakwad",109636713,"2019-04-26",35000,"Dineshg301@gmail.com",105);
+ insert into department_staff values(17,"Mahika","Bajaj",884050201,"2015-09-04",44000,"Mahika10@gmail.com",106);
+insert intodepartment_staff values(18,"Shrishti","Bakshi",989636713,"2018-10-23",35000,"ShristiB1@gmail.com",106);
+insert intodepartment_staff values(19,"Aarav","Bhattacharya",885042638,"2022-08-05",39000,"Aarav09@gmail.com",106);
+insert into department_staff values(20,"Laksh","Chadha",989451000,"2022-09-11",39000,"Lchanda69@gmail.com",107);
+insert intodepartment_staff values(21,"Nimit","Chopra",155042023, "2022-11-15",40000,"Nimit45@gmail.com",107);
+
+
+
+insert into room values(201,2,"Queen Size","NONE",5000,"Available");
+insert into room values(202,4,"King Size","Extra-Bathroom",9000,"Available");
+insert into room values(302,6,"King Size Bed","(2 King Size Bed,1 Queen Size)",12000,"Available");
+insert into room values(305,4,"King Size","2-Single Bed",8000,"Reserved");
+insert into room values(505,2,"King Size","(2 double beds,most luxurious)",19000,"Available");
+insert into room values(401,4,"King Size","1-Single Bed",7000);
+insert into room values(501,3,"King Size","1-Single Size Bed and Extra Bathroom",9000);
+insert into room values(401,4,"King Size","1-Single Bed",7000);
+insert into room values(301,2,"2 Single-Size","None",5000);
+
+
+
+
+
+insert into Food_menu values(1,"Fruits,Assorted Bread (toast, croissants, rolls, brioche, muffins etc)",100,1001);
+insert into Food_menu values(2,"Steam Eggs,Omlet",90,1001);
+insert into Food_menu values(3,"Idli",40,1001),("Dosa",45,1001);
+insert into Food_menu values(4,"Poha",30,1001);
+insert into Food_menu values(5,"Upama",25,1001);
+insert into Food_menu values(6,"Pancakes or waffles",150,1002);
+insert into Food_menu values(7,"Pasta",200,1002);
+insert into Food_menu values(8,"Pizza",250,1002);
+insert into Food_menu values(9,"Rice + Chapathi + Chicken curry + Vegetable curry + Salad + Dessert",750,1003);
+insert into Food_menu values(10,"Palak_Panner",150,1003);
+insert into Food_menu values(11,"Jeera-Rice",75,1003);
+insert into Food_menu values(12,"Bhuna-Masala",120,1003);
+insert into Food_menu values(13,"Handi-Panner",180,1003);
+insert into Food_menu values(14,"Veg Dum Birayani",175,1003);
+insert into food_menu values(15,"Rajma-Chawal",190,1005);
+insert into Food_menu values(16,"Aloo-Methi",75,1005);
+insert into Food_menu values(17,"Chicken-Tikka",180,1005);
+insert into Food_menu values(18,"Daal",75,1005);
+insert into Food_menu values(19,"Chole-Bhature",90,1005);
+insert into Food_menu values(20,"Bhendi-Masala",85,1005);
+insert into Food_menu values(21,"Butter-Chicken",250,1005);
+insert into Food_menu values(22,"Ice-Cream",80,1006);
+insert into Food_menu values(23,"Gulab-Jmun",15,1006);
+insert into Food_menu values(24,"Rasmalai",25,1006);
+insert into Food_menu values(25,"Cake",150,1006);
+insert into Food_menu values(26,"Rabdi",80,1006);
+insert into Food_menu values(27,"Jalabi",30,1006);
+ insert into Food_menu values(28,"Tea",20,28);;
+insert into Food_menu values(29,"Coffe",25,29);
+insert into Food_menu values(30,"Lemon-Juice",15,30);
+insert into Food_menu values(31,"Falooda",60,31);
+
+
+insert into reservation values(1011,2,"2023-01-15","2023-01-20",5,1,505,"Confirmed");
+insert into reservation values(1012,3,"2023-02-05","2023-02-09",4,6,202,"Confirmed");
+insert into reservation values(1014,4,"2023-02-15","NULL","NULL",3,401,"Pending");
+insert into reservation values(1016,1,"2023-01-25","2023-02-01",7,4,305,"Confirmed");
+insert into reservation values(1017,4,"2022-12-26","2023-01-01",5,5,302,"Completed");
+insert into reservation values(1020,2,"2023-03-15","2023-03-20",5,2,501,"Confirmed");
+
+
+insert into transaction values(15010,"2023-01-01",13560,"NEFT/Google Pay",302,5);
+insert into transaction values(15011,"2023-01-20",21536,"Debit Card",505,1);
+insert into transaction values(15012,"2023-02-01",9562,"Cash",305,4);
+insert into transaction values(15013,"2023-02-09",10506,"NEFT/Phone Pay",202,6);
+
+
+
+insert into transaction values(15010,"2023-01-01",13560,"NEFT/Google Pay",302,5);
+insert into transaction values(15011,"2023-01-20",21536,"Debit Card",505,1);
+insert into transaction values(15012,"2023-02-01",9562,"Cash",305,4);
+ insert into transaction values(15013,"2023-02-09",10506,"NEFT/Phone Pay",202,6);
+
+
+insert into Customer_Registration values(1, "VIVAN", "RAJPUT", 9954652010, "VivR56@gmail.com", 'Rajsthan');
+insert into Customer_Registration values(2, "ABHAYA", "MARATHE", 8850486590, "Aby99@gmail.com", 'Mumbai');
+insert into Customer_Registration values(3, "PRIYA", "MISHRA", 8800086590, "PMIS12@gmail.com", 'Raipur');
+insert into Customer_Registration values(4, "JOY", "JONES", 9980086590, "joyj@gmail.com", 'USA');
+insert into Customer_Registration values(5, "RISHI", "DHAWAL", 9659874230, "r89@gmail.com", 'Hydrabad');
+insert into Customer_Registration values(6, "KEWAL", "SINGH", 9921420175, "Ksingh66@gmail.com", 'Punjab');
+
+
+
+
+ insert into amenity values(1,"Wi-Fi,Mini-Refrigrator,Television,Hot-water",505);
+ insert into amenity values(2,"Hot-Water,Wi-Fi",302);
+ insert into amenity values(3,"Television",202);
+ insert into amenity values(4,"Toiletries",401);
+
+
+
+ insert into feedback values(301,1,1011,5,"Our stay at this hotel was absolutely delightful! From the moment we arrived until we checked out, everything exceeded our expectations. We can't wait to return!");
+ insert into feedback values(302,5,1017,4,"Great service and delicious breakfast, but Wi-Fi was unreliable,Convenient location, but limited parking options,Spacious room with stunning views, rooftop amenities were fantastic.");
+ insert into feedback values(303,6,1012,4.5,"Efficient check-in, but encountered issues with room's air conditioning.");
+ insert into feedback values(304,3,1014,4.9,"Friendly staff and clean room, but noise was an issue at night.");
+ insert into feedback values(305,2,1020,4.6,"I thoroughly enjoyed my stay at your hotel and would highly recommend it to others. The attention to detail in the room decor and amenities was impressive, and the complimentary toiletries provided added a luxurious touch to the experience. Thank you for a memorable stay!");
+ insert into feedback values(306,4,1016,3.5,"I was disappointed by the limited dining options available at the hotel. While the breakfast provided was satisfactory, I would have liked to see more variety in the menu for lunch and dinner. Additionally, the prices for room service seemed overly expensive compared to the quality of the food.");
+
+
+
+
+
