@@ -1,4 +1,6 @@
-HOTEL MANAGEMENT SYSTEM 
+                                                    HOTEL MANAGEMENT SYSTEM 
+
+
 A hotel is a hive of numerous operations such as front office, booking, and reservation, inventory, material management, quality management, security, energy management, housekeeping, CRM and more.
 A hotel can be apart of different Hotel Chains. A hotel chain my have multiple hotels. A hotel has multiple rooms and floors, and these rooms can be of different types. By room type, each room has the different 
 price and description. A hotel has some employees to manage the services provided to customers. The customer can book the room either online or by cash payment at the hotel.
